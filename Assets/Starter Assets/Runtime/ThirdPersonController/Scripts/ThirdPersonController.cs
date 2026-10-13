@@ -158,7 +158,12 @@ namespace StarterAssets
 
             JumpAndGravity();
             GroundedCheck();
-            Move();
+
+            if (canMove)
+            {
+                Move();
+            }
+
         }
 
         private void LateUpdate()
@@ -210,6 +215,21 @@ namespace StarterAssets
             CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
                 _cinemachineTargetYaw, 0.0f);
         }
+
+        
+        private bool canMove = true;  
+
+        public void DisableMovement()
+        {
+            canMove = false;
+            Debug.Log("Movement disabled");
+        }
+        public void EnableMovement()
+        {
+            canMove = true;
+            Debug.Log("Movement enabled");
+        }
+
 
         private void Move()
         {
